@@ -6,6 +6,7 @@ import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import Journey from "@/components/sections/Journey";
+import EndToEndProjects from "@/components/sections/EndToEndProjects";
 
 const Index = () => {
   useEffect(() => {
@@ -92,6 +93,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Services />
+      <EndToEndProjects />
       <Journey />
       <About />
       <Contact />
