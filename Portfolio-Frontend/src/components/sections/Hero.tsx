@@ -38,7 +38,7 @@ const Hero = () => {
             className="text-5xl md:text-7xl lg:text-8xl font-extrabold font-sora mb-6 leading-tight animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
-            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+            <span className=" text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
               Vyoom Tech
             </span>
             <br />
