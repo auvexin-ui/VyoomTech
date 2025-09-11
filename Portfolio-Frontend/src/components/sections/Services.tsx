@@ -129,7 +129,7 @@ const Services = () => {
                   key={index}
                   className="min-w-[420px] md:min-w-[520px] lg:min-w-[580px] 
                    h-[500px] md:h-[560px] 
-                   bg-black rounded-3xl 
+                   bg-white rounded-3xl 
                    p-10 shadow-xl hover:shadow-2xl
                    transition-all duration-500 hover:scale-105 
                    group relative overflow-hidden"
@@ -139,7 +139,7 @@ const Services = () => {
                     className={`absolute inset-0 rounded-3xl p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 
           bg-gradient-to-br ${service.gradient}`}
                   >
-                    <div className="absolute inset-0 bg-black rounded-[calc(1.5rem-2px)]" />
+                    <div className="absolute inset-0 bg-white rounded-[calc(1.5rem-2px)]" />
                   </div>
 
                   <div className="relative z-10 h-full flex flex-col justify-between">
@@ -158,23 +158,23 @@ const Services = () => {
                         )}
                       </div>
 
-                      <h3 className="text-3xl font-bold font-sora text-white mb-4 group-hover:text-primary">
+                      <h3 className="text-3xl font-bold font-sora text-gray-900 mb-4 group-hover:text-primary">
                         {service.title}
                       </h3>
 
-                      <p className="text-white mb-6 leading-relaxed text-lg">
+                      <p className="text-gray-600 mb-6 leading-relaxed text-lg">
                         {service.description}
                       </p>
 
                       <div className="mb-8">
-                        <h4 className="text-base font-semibold text-white mb-4 uppercase tracking-wider">
+                        <h4 className="text-base font-semibold text-gray-700 mb-4 uppercase tracking-wider">
                           Key Features
                         </h4>
                         <div className="grid grid-cols-2 gap-3">
                           {service.features.map((feature) => (
                             <div
                               key={feature}
-                              className="flex items-center text-base text-white"
+                              className="flex items-center text-base text-gray-600"
                             >
                               <Zap className="w-4 h-4 text-primary mr-3" />
                               {feature}
