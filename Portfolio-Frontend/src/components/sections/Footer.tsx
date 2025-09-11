@@ -30,13 +30,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-footer-bg relative overflow-hidden" role="contentinfo">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-2xl animate-pulse-slow" />
-      </div>
-
+    <footer className="bg-gray-100 relative overflow-hidden" role="contentinfo">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-16">
@@ -44,10 +38,10 @@ const Footer = () => {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-2 mb-6">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl font-sora">V</span>
                 </div>
-                <span className="text-2xl font-bold font-sora text-primary">
+                <span className="text-2xl font-bold font-sora text-gray-900">
                   Vyoom Tech
                 </span>
               </div>
@@ -58,19 +52,19 @@ const Footer = () => {
               </p>
 
               <div className="space-y-3">
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-700">
                   <Mail className="w-4 h-4 mr-3 text-primary" />
                   <a href="mailto:info@vyoomtech.com" className="hover:text-primary transition-colors">
                     info@vyoomtech.com
                   </a>
                 </div>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-700">
                   <Phone className="w-4 h-4 mr-3 text-primary" />
                   <a href="tel:+1234567890" className="hover:text-primary transition-colors">
                     +1 (234) 567-8900
                   </a>
                 </div>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-700">
                   <MapPin className="w-4 h-4 mr-3 text-primary" />
                   <span>Global Services Available</span>
                 </div>
@@ -79,7 +73,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold font-sora text-gray-800 mb-6">
+              <h3 className="text-lg font-semibold font-sora text-gray-900 mb-6">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -87,7 +81,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a 
                       href={link.href}
-                      className="text-gray-600 hover:text-primary transition-colors duration-200"
+                      className="text-gray-700 hover:text-primary transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -98,13 +92,13 @@ const Footer = () => {
 
             {/* Services */}
             <div>
-              <h3 className="text-lg font-semibold font-sora text-gray-800 mb-6">
+              <h3 className="text-lg font-semibold font-sora text-gray-900 mb-6">
                 Services
               </h3>
               <ul className="space-y-3">
                 {services.map((service) => (
                   <li key={service}>
-                    <span className="text-gray-600">
+                    <span className="text-gray-700">
                       {service}
                     </span>
                   </li>
@@ -115,13 +109,13 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="border-t border-gray-300/50 py-8">
+        <div className="border-t border-gray-300 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
-              <h3 className="text-lg font-semibold font-sora text-gray-800 mb-2">
+              <h3 className="text-lg font-semibold font-sora text-gray-900 mb-2">
                 Stay Updated
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-700">
                 Subscribe to get the latest updates on our services and projects.
               </p>
             </div>
@@ -129,7 +123,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white/80"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
                 aria-label="Email address for newsletter"
               />
               <Button variant="hero">
@@ -140,9 +134,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-300/50 py-6">
+        <div className="border-t border-gray-300 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="text-gray-600 text-sm mb-4 md:mb-0">
+            <div className="text-gray-700 text-sm mb-4 md:mb-0">
               © {currentYear} Vyoom Tech. All rights reserved.
             </div>
             

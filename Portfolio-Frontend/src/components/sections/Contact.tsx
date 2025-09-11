@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle, Calendar } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  MessageCircle,
+  Calendar,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,27 +22,31 @@ const Contact = () => {
 
   const services = [
     "Android App Development",
-    "Flutter App Development", 
+    "Flutter App Development",
     "Website Development",
     "AI & ML Solutions",
     "Custom Development",
     "Consultation",
+  ];
+  const role = [
+    "Technical Lead",
+    "Non-Technical Lead",
   ];
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email Us",
-      value: "info@vyoomtech.com",
+      value: "vyoomtech@gmail.com",
       href: "mailto:info@vyoomtech.com",
       description: "Send us an email anytime",
     },
     {
       icon: Phone,
       title: "Call Us",
-      value: "+1 (234) 567-8900",
+      value: "+91 74703-79829",
       href: "tel:+1234567890",
-      description: "Mon-Fri from 8am to 5pm",
+      description: "Mon-Sat from 8am to 10pm",
     },
     {
       icon: MapPin,
@@ -48,7 +59,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
@@ -74,7 +85,11 @@ const Contact = () => {
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -82,7 +97,11 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-dark-section relative overflow-hidden" aria-labelledby="contact-heading">
+    <section
+      id="contact"
+      className="py-20 bg-dark-section relative overflow-hidden"
+      aria-labelledby="contact-heading"
+    >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -92,14 +111,15 @@ const Contact = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 
+          <h2
             id="contact-heading"
             className="text-3xl md:text-5xl font-bold font-sora text-card-dark-foreground mb-6"
           >
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Ready to start your next project? Let's discuss how we can help bring your ideas to life.
+            Ready to start your next project? Let's discuss how we can help
+            bring your ideas to life.
           </p>
         </div>
 
@@ -109,7 +129,7 @@ const Contact = () => {
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
               return (
-                <div 
+                <div
                   key={info.title}
                   className="glass-card bg-card-dark/50 border border-white/10 hover:border-primary/30 transition-all duration-300 group"
                   style={{ animationDelay: `${index * 0.1}s` }}
@@ -122,7 +142,7 @@ const Contact = () => {
                       <h3 className="text-lg font-semibold font-sora text-card-dark-foreground mb-2">
                         {info.title}
                       </h3>
-                      <a 
+                      <a
                         href={info.href}
                         className="text-primary hover:text-primary-glow font-medium transition-colors duration-200"
                       >
@@ -139,17 +159,17 @@ const Contact = () => {
 
             {/* Quick Actions */}
             <div className="space-y-4">
-              <Button 
-                variant="glass" 
+              <Button
+                variant="glass"
                 className="w-full justify-start"
                 aria-label="Schedule a consultation call"
               >
                 <Calendar className="mr-3 w-4 h-4" />
                 Schedule a Call
               </Button>
-              
-              <Button 
-                variant="glass" 
+
+              <Button
+                variant="glass"
                 className="w-full justify-start"
                 aria-label="Start a live chat"
               >
@@ -161,14 +181,20 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="glass-card bg-card-dark/50 border border-white/10">
+            <form
+              onSubmit={handleSubmit}
+              className="glass-card bg-card-dark/50 border border-white/10"
+            >
               <h3 className="text-2xl font-bold font-sora text-card-dark-foreground mb-6">
                 Send us a Message
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-card-dark-foreground mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-card-dark-foreground mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -184,7 +210,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-card-dark-foreground mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-card-dark-foreground mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -202,7 +231,10 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-card-dark-foreground mb-2">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-card-dark-foreground mb-2"
+                  >
                     Company
                   </label>
                   <input
@@ -217,7 +249,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-card-dark-foreground mb-2">
+                  <label
+                    htmlFor="service"
+                    className="block text-sm font-medium text-card-dark-foreground mb-2"
+                  >
                     Service Interested In
                   </label>
                   <select
@@ -229,8 +264,38 @@ const Contact = () => {
                   >
                     <option value="">Select a service</option>
                     {services.map((service) => (
-                      <option key={service} value={service} className="bg-card-dark text-card-dark-foreground">
+                      <option
+                        key={service}
+                        value={service}
+                        className="bg-card-dark text-card-dark-foreground"
+                      >
                         {service}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label
+                    htmlFor="service"
+                    className="block text-sm font-medium text-card-dark-foreground mb-2"
+                  >
+                    Role
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    value={formData.role}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-card-dark-foreground"
+                  >
+                    <option value="">Select a role</option>
+                    {role.map((role) => (
+                      <option
+                        key={role}
+                        value={role}
+                        className="bg-card-dark text-card-dark-foreground"
+                      >
+                        {role}
                       </option>
                     ))}
                   </select>
@@ -238,7 +303,10 @@ const Contact = () => {
               </div>
 
               <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-card-dark-foreground mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-card-dark-foreground mb-2"
+                >
                   Message *
                 </label>
                 <textarea
@@ -253,12 +321,7 @@ const Contact = () => {
                 />
               </div>
 
-              <Button 
-                type="submit" 
-                variant="hero" 
-                size="lg" 
-                className="w-full"
-              >
+              <Button type="submit" variant="hero" size="lg" className="w-full">
                 Send Message
                 <Send className="ml-2 w-4 h-4" />
               </Button>
