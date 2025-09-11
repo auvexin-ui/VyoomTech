@@ -32,7 +32,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-6xl mx-auto flex flex-col items-center w-full">
           {/* Tagline */}
-          <div className="inline-flex mt-24 items-center justify-center w-full px-8 py-5 rounded-full mb-10 animate-fade-in border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-md">
+          <div className="inline-flex mt-11 items-center justify-center w-full px-8 py-5 rounded-full mb-10 animate-fade-in border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-md">
             <Sparkles className="w-7 h-7 text-indigo-500 dark:text-indigo-400 mr-3" />
             <span className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-gray-200">
               Building Future-Ready Digital Solutions
