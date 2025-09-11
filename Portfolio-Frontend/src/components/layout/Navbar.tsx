@@ -23,7 +23,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav 
+    <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled ? "bg-white backdrop-blur-lg shadow-lg" : "bg-white"
       }`}
@@ -31,16 +31,15 @@ const Navbar = () => {
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-xl font-sora">V</span>
-              </div>
-              <span className="text-xl font-bold font-sora text-gray-800">
-                Vyoom Tech
-              </span>
+              <img
+                src="/logo.png"
+                alt="Vyoom Tech Logo"
+                className="h-24 w-auto object-contain"
+              />
             </a>
           </div>
 
@@ -85,7 +84,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div 
+        <div
           className="md:hidden"
           id="mobile-menu"
           role="menu"
