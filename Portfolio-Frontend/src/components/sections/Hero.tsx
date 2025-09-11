@@ -1,20 +1,23 @@
+"use client";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "/logo.png";
-import logoImage from "/logo.png"; // Replace with actual path to logo
+import logoImage from "/logo.png"; // Ensure this path is correct
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const Hero = () => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden py-16 md:py-24"
+      className="relative min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden py-12 md:py-20"
       aria-labelledby="hero-heading"
     >
-      {/* Background Image/Pattern */}
+      {/* Background Logo with Low Opacity */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5 dark:opacity-10"
-        style={{ backgroundImage: `url(${heroImage})` }}
-        role="presentation"
+        className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-5 dark:opacity-0"
+        style={{ backgroundImage: `url(${logoImage})` }}
         aria-hidden="true"
       />
 
@@ -25,44 +28,38 @@ const Hero = () => {
         <div className="absolute bottom-[20%] left-[20%] w-72 h-72 bg-pink-200 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-20 animate-blob animation-delay-4000" />
       </div>
 
-      <div className="relative z-10 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center px-5 py-2 rounded-full mb-8 animate-fade-in border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-sm">
-            <Sparkles className="w-5 h-5 text-indigo-500 dark:text-indigo-400 mr-2" />
-            <span className="text-sm md:text-base font-medium text-gray-800 dark:text-gray-200">
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-6xl mx-auto flex flex-col items-center w-full">
+          {/* Tagline */}
+          <div className="inline-flex mt-24 items-center justify-center w-full px-8 py-5 rounded-full mb-10 animate-fade-in border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-md">
+            <Sparkles className="w-7 h-7 text-indigo-500 dark:text-indigo-400 mr-3" />
+            <span className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-gray-200">
               Building Future-Ready Digital Solutions
             </span>
           </div>
 
-          {/* Heading with Logo */}
+          {/* Main Heading */}
           <h1
             id="hero-heading"
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold font-sora mb-6 leading-tight animate-fade-in flex flex-col items-center"
-            style={{ animationDelay: "0.2s" }}
+            className="w-full text-6xl md:text-7xl lg:text-8xl font-extrabold font-sora mb-8 leading-tight animate-fade-in bg-gradient-to-r from-blue-500 via-purple-500 to-gray-700 text-transparent bg-clip-text"
           >
-            <img
-              src={logoImage}
-              alt="Vyoom Tech Logo"
-              className="h-24 md:h-28 lg:h-32 object-contain mb-4"
-            />
-            <span className="text-gray-900 dark:text-white">
-              Digital Innovation
-            </span>
+            Digital Innovation
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle / Description */}
           <p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in"
+            className="w-full max-w-5xl text-xl md:text-2xl mb-10 mx-auto leading-relaxed animate-fade-in bg-gradient-to-r from-gray-700 via-purple-500 to-blue-500 dark:from-gray-300 dark:via-purple-300 dark:to-blue-300 text-transparent bg-clip-text"
             style={{ animationDelay: "0.4s" }}
           >
-            We create cutting-edge mobile apps, websites, and AI solutions that
-            transform businesses and deliver exceptional user experiences.
+            We create cutting-edge mobile apps, modern websites, and powerful AI
+            solutions. Our mission is to transform businesses with innovation,
+            helping you scale globally with digital-first strategies.
           </p>
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-fade-in"
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-fade-in mb-12"
             style={{ animationDelay: "0.6s" }}
           >
             <Button
@@ -85,22 +82,27 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Stats */}
+          {/* Stats Section with CountUp */}
           <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6 mt-20 animate-fade-in"
+            ref={ref}
+            className="grid grid-cols-2 md:grid-cols-4 gap-y-14 gap-x-10 mt-12 animate-fade-in"
             style={{ animationDelay: "0.8s" }}
           >
             {[
-              { value: "10+", label: "Projects Delivered" },
-              { value: "5+", label: "Happy Clients" },
-              { value: "3+", label: "Years Experience" },
-              { value: "2+", label: "Countries Served" },
+              { value: 10, suffix: "+", label: "Projects Delivered" },
+              { value: 5, suffix: "+", label: "Happy Clients" },
+              { value: 3, suffix: "+", label: "Years Experience" },
+              { value: 2, suffix: "+", label: "Countries Served" },
             ].map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className="text-4xl md:text-5xl font-extrabold font-sora mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-300 dark:to-purple-300 group-hover:scale-105 transition-transform duration-300">
-                  {stat.value}
+                <div className="text-5xl md:text-6xl font-extrabold font-sora mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-300 dark:to-purple-300 group-hover:scale-110 transition-transform duration-300">
+                  {inView ? (
+                    <CountUp end={stat.value} duration={2} suffix={stat.suffix} />
+                  ) : (
+                    "0"
+                  )}
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 text-sm md:text-base group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
+                <div className="text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
                   {stat.label}
                 </div>
               </div>
