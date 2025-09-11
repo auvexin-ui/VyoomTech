@@ -10,8 +10,43 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { GradientTextHeading } from "../ui/gradient-text-heading";
 import { GradientText } from "../ui/gradient-text";
+
+// ✅ Responsive Motion wrapper
+const ResponsiveMotion = ({ children }: { children: React.ReactNode }) => {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsLargeScreen(window.innerWidth >= 1024); // lg breakpoint
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  if (isLargeScreen) {
+    return (
+      <motion.div
+        className="flex gap-12 px-4"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
+  // 👉 On small screens: swipeable but static
+  return (
+    <div className="flex gap-6 px-4 overflow-x-auto snap-x snap-mandatory">
+      {children}
+    </div>
+  );
+};
 
 const Services = () => {
   const services = [
@@ -102,10 +137,9 @@ const Services = () => {
             id="services-heading"
             className="text-4xl md:text-6xl font-extrabold font-sora text-gray-900 mb-6 tracking-tight leading-tight"
           >
-            <span className="">
+            <span>
               <GradientTextHeading>Our Services</GradientTextHeading>
             </span>
-            <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 ml-2"></span>
           </h2>
           <p className="mx-auto leading-relaxed">
             <GradientText>
@@ -116,23 +150,21 @@ const Services = () => {
         </div>
 
         {/* Auto Scrolling Slider */}
-        <div className="relative w-full py-6 ">
-          <motion.div
-            className="flex gap-12 px-4"
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-          >
+        <div className="relative w-full py-6">
+          <ResponsiveMotion>
             {[...services, ...services].map((service, index) => {
               const Icon = service.icon;
               return (
                 <article
                   key={index}
-                  className="min-w-[420px] md:min-w-[520px] lg:min-w-[580px] 
-                   h-[500px] md:h-[560px] 
+                  className="min-w-[320px] md:min-w-[520px] lg:min-w-[580px] 
+                   h-[670px] md:h-[690px] 
                    bg-white rounded-3xl 
                    p-10 shadow-xl hover:shadow-2xl
                    transition-all duration-500 hover:scale-105 
-                   group relative overflow-hidden"
+                   group relative overflow-hidden snap-center
+                   mb-8 md:mb-0" 
+                   
                 >
                   {/* Gradient Border Effect */}
                   <div
@@ -199,7 +231,7 @@ const Services = () => {
                 </article>
               );
             })}
-          </motion.div>
+          </ResponsiveMotion>
         </div>
 
         {/* Bottom CTA */}
