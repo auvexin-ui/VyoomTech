@@ -38,7 +38,7 @@ const Navbar = () => {
               <img
                 src="/logo.png"
                 alt="Vyoom Tech Logo"
-                className="h-20 w-auto object-contain"
+                className="h-11 w-auto object-contain"
               />
             </a>
           </div>
