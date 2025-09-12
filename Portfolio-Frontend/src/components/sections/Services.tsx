@@ -8,110 +8,85 @@ import {
   Zap,
   PenTool,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { GradientTextHeading } from "../ui/gradient-text-heading";
 import { GradientText } from "../ui/gradient-text";
-
-// ✅ Responsive Motion wrapper
-const ResponsiveMotion = ({ children }: { children: React.ReactNode }) => {
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsLargeScreen(window.innerWidth >= 1024); // lg breakpoint
-    };
-
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
-  if (isLargeScreen) {
-    return (
-      <motion.div
-        className="flex gap-4 px-3"
-        animate={{ x: ["0%", "-100%"] }}
-        transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-
-  // 👉 On small screens: swipeable but static
-  return (
-    <div className="flex gap-3 px-3 overflow-x-auto snap-x snap-mandatory">
-      {children}
-    </div>
-  );
-};
 
 const Services = () => {
   const services = [
     {
       icon: Smartphone,
+      image: "/android.png", // ✅ From public folder
       title: "Android App Development",
+      tagline: "High-performance native apps",
       description:
-        "Native Android applications with cutting-edge features, optimal performance, and beautiful user interfaces that engage users.",
-      features: [
-        "Native Development",
-        "Material Design",
-        "Performance Optimization",
-        "Play Store Publishing",
+        "We build powerful, secure, and user-friendly Android applications designed to scale and engage millions of users.",
+      points: [
+        "Material Design UI",
+        "Optimized performance",
+        "Play Store publishing support",
+        "Offline-first architecture",
       ],
       gradient: "from-green-400 to-emerald-600",
     },
     {
       icon: Code,
+      image: "/flutter.png",
       title: "Flutter App Development",
+      tagline: "One codebase, multiple platforms",
       description:
-        "Cross-platform mobile applications using Flutter framework for iOS and Android with a single codebase and native performance.",
-      features: [
-        "Cross-Platform",
-        "Single Codebase",
-        "Hot Reload",
-        "Native Performance",
+        "Our Flutter apps deliver native-like performance across Android and iOS, saving cost and development time.",
+      points: [
+        "Cross-platform support",
+        "Hot reload for faster iterations",
+        "Pixel-perfect UI",
+        "Seamless API integrations",
       ],
       gradient: "from-blue-400 to-cyan-600",
     },
     {
       icon: Globe,
+      image: "/web.png",
       title: "Website Development",
+      tagline: "Responsive & modern websites",
       description:
-        "Modern, responsive websites and web applications built with the latest technologies for optimal user experience and SEO.",
-      features: [
-        "Responsive Design",
-        "SEO Optimized",
-        "Fast Loading",
-        "Modern Tech Stack",
+        "We design and develop websites that load fast, rank higher on search engines, and deliver an exceptional user experience.",
+      points: [
+        "SEO-friendly architecture",
+        "Blazing-fast loading speed",
+        "Scalable backend solutions",
+        "Modern design principles",
       ],
       gradient: "from-purple-400 to-pink-600",
     },
     {
       icon: PenTool,
+      image: "/design.png",
       title: "UI/UX Design",
+      tagline: "Designs that delight users",
       description:
-        "Crafting intuitive, beautiful, and user-friendly designs that deliver seamless experiences across devices.",
-      features: [
-        "Wireframing",
-        "Prototyping",
-        "User Research",
-        "Modern Aesthetics",
+        "Our design team creates visually stunning and intuitive user interfaces backed by real user research.",
+      points: [
+        "Wireframes & prototypes",
+        "User journey mapping",
+        "Interactive prototypes",
+        "Modern, minimal aesthetics",
       ],
       gradient: "from-indigo-400 to-fuchsia-600",
     },
     {
       icon: Brain,
+      image: "/ai.png",
       title: "AI & ML Solutions",
+      tagline: "Data-driven intelligent apps",
       description:
-        "Intelligent solutions powered by artificial intelligence and machine learning to automate processes and provide insights.",
-      features: [
-        "Machine Learning",
-        "Data Analytics",
-        "Automation",
-        "Predictive Models",
+        "We harness the power of Artificial Intelligence and Machine Learning to automate, predict, and innovate.",
+      points: [
+        "Predictive analytics",
+        "Process automation",
+        "Data-driven insights",
+        "Natural Language Processing",
       ],
       gradient: "from-orange-400 to-red-600",
       badge: "Coming Soon",
@@ -121,132 +96,129 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="py-16 relative overflow-hidden bg-white"
+      className="py-20 relative overflow-hidden bg-black"
       aria-labelledby="services-heading"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-1/3 left-1/6 w-60 h-60 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/3 right-1/6 w-72 h-72 bg-accent/5 rounded-full blur-2xl animate-pulse-slow" />
-      </div>
+      {/* Central Line */}
+      <div className="absolute left-1/2 top-96 bottom-24 w-[2px] bg-gradient-to-b from-primary/60 via-gray-700/50 to-accent/60 transform -translate-x-1/2"></div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-5 lg:px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h2
             id="services-heading"
-            className="text-3xl md:text-5xl font-extrabold font-sora text-gray-900 mb-4 tracking-tight leading-tight"
+            className="text-3xl md:text-5xl font-extrabold font-sora text-white mb-4 tracking-tight"
           >
-            <span>
-              <GradientTextHeading>Our Services</GradientTextHeading>
-            </span>
+            <GradientTextHeading>Our Services</GradientTextHeading>
           </h2>
-          <p className="mx-auto text-sm md:text-base leading-relaxed max-w-2xl">
+          <p className="mx-auto text-sm md:text-base max-w-2xl text-gray-300 mb-6">
             <GradientText>
-              We craft innovative digital experiences that drive growth and
-              deliver exceptional value.
+              From concept to execution, we design and build digital solutions
+              that transform businesses and delight users.
             </GradientText>
           </p>
+
+          {/* CTA */}
+          <div className="text-center mt-6">
+            <p className="text-gray-300 text-sm md:text-base mb-3">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 font-semibold">
+                Ready to start your digital journey with us?
+              </span>
+            </p>
+            <Button
+              variant="hero"
+              size="lg"
+              className="px-6 py-3 h-auto text-sm md:text-base font-semibold rounded-full shadow-lg hover:shadow-primary/50 transition-all duration-300"
+            >
+              Start Your Project Today 🚀
+            </Button>
+          </div>
         </div>
 
-        {/* Auto Scrolling Slider */}
-        <div className="relative w-full py-4">
-          <ResponsiveMotion>
-            {[...services, ...services].map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={index}
-                  className="min-w-[200px] md:min-w-[280px] lg:min-w-[320px] 
-                   h-[360px] md:h-[380px] 
-                   bg-white rounded-xl 
-                   p-4 shadow-md hover:shadow-xl
-                   transition-all duration-500 hover:scale-105 
-                   group relative overflow-hidden snap-center
-                   mb-3 md:mb-0"
-                >
-                  {/* Gradient Border Effect */}
-                  <div
-                    className={`absolute inset-0 rounded-xl p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 
-          bg-gradient-to-br ${service.gradient}`}
-                  >
-                    <div className="absolute inset-0 bg-white rounded-[calc(0.75rem-2px)]" />
+        {/* Timeline */}
+        <div className="relative space-y-28">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const isLeft = index % 2 === 0;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: isLeft ? -120 : 120 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className={`relative flex items-center ${
+                  isLeft ? "justify-start" : "justify-end"
+                }`}
+              >
+                {/* Dot on timeline */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent border-4 border-black relative">
+                    <span className="absolute inset-0 rounded-full animate-ping bg-gradient-to-br from-primary to-accent opacity-70"></span>
                   </div>
+                </div>
 
-                  <div className="relative z-10 h-full flex flex-col justify-between">
-                    {/* Header */}
-                    <div>
-                      <div className="flex items-start justify-between mb-3">
-                        <div
-                          className={`p-2 rounded-md bg-gradient-to-br ${service.gradient} shadow-md`}
-                        >
-                          <Icon className="w-5 h-5 text-white" />
-                        </div>
-                        {service.badge && (
-                          <span className="px-2 py-0.5 bg-accent/20 text-accent text-[10px] font-semibold rounded-full border border-accent/40">
-                            {service.badge}
-                          </span>
-                        )}
+                {/* Card */}
+                <div className="w-[92%] sm:w-[46%] bg-gray-900/95 rounded-2xl p-7 shadow-lg hover:shadow-primary/30 transition-all duration-500 hover:scale-[1.02]">
+                  {/* Image + Icon */}
+                  <div className="flex items-center mb-4 space-x-3">
+                    {service.image && (
+                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary shadow-md">
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          width={48}
+                          height={48}
+                          className="object-cover"
+                        />
                       </div>
-
-                      <h3 className="text-lg font-bold font-sora text-gray-900 mb-2 group-hover:text-primary">
-                        {service.title}
-                      </h3>
-
-                      <p className="text-gray-600 mb-3 leading-relaxed text-xs">
-                        {service.description}
-                      </p>
-
-                      <div className="mb-3">
-                        <h4 className="text-[10px] font-semibold text-gray-700 mb-1 uppercase tracking-wider">
-                          Key Features
-                        </h4>
-                        <div className="grid grid-cols-2 gap-1.5">
-                          {service.features.map((feature) => (
-                            <div
-                              key={feature}
-                              className="flex items-center text-[10px] text-gray-600"
-                            >
-                              <Zap className="w-3 h-3 text-primary mr-1" />
-                              {feature}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* CTA */}
-                    <Button
-                      variant="outline"
-                      className={`w-full text-xs py-1.5 px-3 rounded-md 
-              border border-gray-300 text-gray-900 
-              hover:bg-gradient-to-r ${service.gradient} hover:border-transparent 
-              hover:text-white transition-all duration-300`}
+                    )}
+                    <div
+                      className={`p-3 rounded-md bg-gradient-to-br ${service.gradient} shadow-md`}
                     >
-                      View
-                      <Palette className="ml-1 w-3.5 h-3.5" />
-                    </Button>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    {service.badge && (
+                      <span className="ml-3 px-2 py-1 bg-accent/20 text-accent text-[11px] font-semibold rounded-full border border-accent/40">
+                        {service.badge}
+                      </span>
+                    )}
                   </div>
-                </article>
-              );
-            })}
-          </ResponsiveMotion>
-        </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-10">
-          <p className="text-gray-700 text-sm md:text-base mb-3">
-            <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-              Ready to transform your vision into reality?
-            </span>
-          </p>
-          <Button
-            variant="hero"
-            size="lg"
-            className="px-5 py-2.5 h-auto text-sm md:text-base font-semibold rounded-full shadow-lg hover:shadow-primary/50 transition-all duration-300"
-          >
-            Start Your Project Today
-          </Button>
+                  <h3 className="text-xl font-bold text-white mb-1">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-primary/70 mb-3 italic">
+                    {service.tagline}
+                  </p>
+                  <p className="text-gray-400 text-sm mb-4">
+                    {service.description}
+                  </p>
+
+                  {/* Points */}
+                  <ul className="space-y-2 mb-4">
+                    {service.points.map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center text-gray-300 text-sm"
+                      >
+                        <Zap className="w-3.5 h-3.5 text-primary mr-2" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    variant="outline"
+                    className="text-xs py-1.5 px-4 rounded-md border border-gray-600 text-gray-200 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-white transition-all duration-300"
+                  >
+                    Learn More <Palette className="ml-1 w-3.5 h-3.5" />
+                  </Button>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

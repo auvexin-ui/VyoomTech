@@ -1,13 +1,15 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Sparkles, CheckCircle2, Award } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Assuming you have a GradientTextHeading component
-// import { GradientTextHeading } from "../ui/gradient-text-heading";
-
-// Placeholder for GradientTextHeading if you don't have it yet
 const GradientTextHeading: React.FC<{ children: React.ReactNode }> = ({
   children,
-}) => <>{children}</>;
+}) => (
+  <h2 className="text-3xl md:text-4xl font-extrabold font-sora text-gray-900 dark:text-white mb-6 leading-tight bg-gradient-to-r from-emerald-500 to-teal-500 text-transparent bg-clip-text">
+    {children}
+  </h2>
+);
 
 interface ProjectFeature {
   icon: React.ElementType;
@@ -22,7 +24,7 @@ interface ProjectCardProps {
   tagline: string;
   description: string;
   features: ProjectFeature[];
-  isReversed?: boolean; // To alternate image/text layout
+  blurred?: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -32,197 +34,188 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   tagline,
   description,
   features,
-  isReversed = false,
-}) => {
-  return (
-    <div
-      className={`flex flex-col md:flex-row items-center gap-10 lg:gap-16 p-6 md:p-10 bg-white dark:bg-gray-800 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out border border-gray-100 dark:border-gray-700 ${
-        isReversed ? "md:flex-row-reverse" : ""
-      }`}
-    >
-      {/* Image Section (Left or Right based on isReversed) */}
-      <div className="w-full md:w-1/2 flex justify-center p-4">
-        <img
-          src={imageSrc}
-          alt={imageAlt}
-          className="rounded-2xl object-cover w-full h-[350px] md:h-[450px] lg:h-[500px] shadow-lg border border-gray-200 dark:border-gray-600 transform hover:scale-105 transition-transform duration-500 ease-in-out"
-        />
-      </div>
-
-      {/* Text Content Section */}
-      <div className="w-full md:w-1/2 text-center md:text-left">
-        <span className="inline-block bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-sm font-medium px-4 py-1.5 rounded-full mb-4">
-          {tagline}
-        </span>
-        <h3 className="text-3xl lg:text-4xl font-extrabold font-sora text-gray-900 dark:text-white mb-4 leading-tight">
-          {title}
-        </h3>
-        <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-          {description}
-        </p>
-
-        <div className="space-y-4">
-          {features.map((feature, index) => (
-            <div key={index} className="flex items-start text-left">
-              <feature.icon className="w-6 h-6 text-indigo-500 dark:text-indigo-400 mr-3 flex-shrink-0 mt-1" />
-              <div>
-                <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-1">
-                  {feature.title}
-                </h4>
-                <p className="text-base text-gray-600 dark:text-gray-400">
-                  {feature.description}
-                </p>
-              </div>
-            </div>
-          ))}
+  blurred = false,
+}) => (
+  <div
+    className={`w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-6 text-center transition-all duration-500 ${
+      blurred ? "opacity-40 blur-sm scale-90" : "opacity-100 blur-0 scale-100"
+    }`}
+  >
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      className="rounded-xl object-cover w-full h-52 shadow-md mb-4"
+    />
+    <span className="inline-block bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-3 py-1 rounded-full mb-3">
+      {tagline}
+    </span>
+    <h3 className="text-lg font-extrabold font-sora text-gray-900 dark:text-white mb-2">
+      {title}
+    </h3>
+    <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+      {description}
+    </p>
+    <div className="space-y-2 text-left">
+      {features.map((feature, idx) => (
+        <div key={idx} className="flex items-start">
+          <feature.icon className="w-4 h-4 text-emerald-500 dark:text-emerald-400 mr-2 mt-0.5 flex-shrink-0" />
+          <div>
+            <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-0.5">
+              {feature.title}
+            </h4>
+            <p className="text-xs text-gray-600 dark:text-gray-400">
+              {feature.description}
+            </p>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);
+
+const projectData = [
+  {
+    imageSrc:
+      "https://images.unsplash.com/photo-1556740758-94420824b010?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "E-commerce Platform Project",
+    title: "NextGen E-commerce Platform",
+    tagline: "Retail & Consumer Goods",
+    description:
+      "We engineered a robust and scalable e-commerce platform that offers a seamless shopping experience and advanced inventory management.",
+    features: [
+      {
+        icon: CheckCircle2,
+        title: "Intuitive UX",
+        description: "Effortless navigation.",
+      },
+      {
+        icon: Sparkles,
+        title: "AI Recommendations",
+        description: "Personalized product suggestions.",
+      },
+      {
+        icon: Award,
+        title: "Scalable Cloud",
+        description: "Resilient cloud architecture.",
+      },
+    ],
+  },
+  {
+    imageSrc:
+      "https://images.unsplash.com/photo-1519389950473-47ba0fd0e158?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "FinTech Solution Project",
+    title: "Secure FinTech Portal",
+    tagline: "Financial Services",
+    description:
+      "Developed a secure and compliant financial technology portal for seamless transactions and data management.",
+    features: [
+      {
+        icon: CheckCircle2,
+        title: "Bank-Grade Security",
+        description: "MFA and encryption.",
+      },
+      {
+        icon: Sparkles,
+        title: "Real-time Analytics",
+        description: "Interactive dashboards.",
+      },
+      {
+        icon: Award,
+        title: "Compliance",
+        description: "Adherence to industry standards.",
+      },
+    ],
+  },
+  {
+    imageSrc:
+      "https://images.unsplash.com/photo-1521737711867-ee1d8841a4a6?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "Healthcare Management System",
+    title: "Digital Health Platform",
+    tagline: "Healthcare & Wellness",
+    description:
+      "Created an integrated digital health platform to streamline patient management, appointments, and medical records.",
+    features: [
+      {
+        icon: CheckCircle2,
+        title: "Patient-Centric",
+        description: "Easy access to health info.",
+      },
+      {
+        icon: Sparkles,
+        title: "Telemedicine",
+        description: "Virtual consultations.",
+      },
+      {
+        icon: Award,
+        title: "HIPAA Compliant",
+        description: "Secure patient data.",
+      },
+    ],
+  },
+];
 
 const EndToEndProjects = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % projectData.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const prevIndex = (current - 1 + projectData.length) % projectData.length;
+  const nextIndex = (current + 1) % projectData.length;
+
   return (
-    <section
-      id="projects"
-      className="py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-gray-900 dark:to-gray-950 relative overflow-hidden"
-      aria-labelledby="projects-heading"
-    >
-      {/* Background Shapes for Visual Interest */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10 dark:opacity-5">
-        <div className="absolute -top-1/4 -left-1/4 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob-slow" />
-        <div className="absolute -bottom-1/4 -right-1/4 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob-slow animation-delay-3000" />
-      </div>
+    <section className="py-20 bg-black relative overflow-hidden">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
+        <GradientTextHeading>Our End-to-End Projects</GradientTextHeading>
+        <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-12">
+          Discover how we transform ideas into successful digital realities,
+          from concept to deployment and beyond.
+        </p>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16 lg:mb-20">
-          <GradientTextHeading>
-            <h2
-              id="projects-heading"
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold font-sora text-gray-900 dark:text-white mb-6 leading-tight"
+        <div className="relative flex items-center justify-center">
+          <AnimatePresence initial={false}>
+            {/* Left (blurred) */}
+            <motion.div
+              key={`prev-${prevIndex}`}
+              initial={{ opacity: 0, x: -150, scale: 0.8 }}
+              animate={{ opacity: 0.5, x: -220, scale: 0.85 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute"
             >
-              Our End-to-End Projects
-            </h2>
-          </GradientTextHeading>
-          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            Discover how we transform ideas into successful digital realities,
-            from concept to deployment and beyond.
-          </p>
-        </div>
+              <ProjectCard {...projectData[prevIndex]} blurred />
+            </motion.div>
 
-        {/* Projects Grid */}
-        <div className="space-y-20 lg:space-y-28">
-          <ProjectCard
-            imageSrc="https://images.unsplash.com/photo-1556740758-94420824b010?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            imageAlt="E-commerce Platform Project"
-            title="NextGen E-commerce Platform"
-            tagline="Retail & Consumer Goods"
-            description="We engineered a robust and scalable e-commerce platform that offers a seamless shopping experience, advanced inventory management, and personalized customer journeys, leading to a 30% increase in sales for our client."
-            features={[
-              {
-                icon: CheckCircle2,
-                title: "Intuitive User Experience",
-                description:
-                  "Designed for effortless navigation and a delightful shopping flow.",
-              },
-              {
-                icon: Sparkles,
-                title: "AI-Powered Recommendations",
-                description:
-                  "Integrated machine learning for personalized product suggestions.",
-              },
-              {
-                icon: Award,
-                title: "Scalable Cloud Infrastructure",
-                description:
-                  "Built on a resilient cloud architecture to handle peak traffic.",
-              },
-            ]}
-          />
+            {/* Current (center focus) */}
+            <motion.div
+              key={`current-${current}`}
+              initial={{ opacity: 0, scale: 0.7, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.6, y: -20 }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
+              className="relative z-20"
+            >
+              <ProjectCard {...projectData[current]} />
+            </motion.div>
 
-          <ProjectCard
-            imageSrc="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            imageAlt="AI-driven Analytics Dashboard"
-            title="Intelligent Data Analytics Dashboard"
-            tagline="Business Intelligence"
-            description="Our AI-driven dashboard transforms raw data into actionable insights, empowering businesses to make informed decisions quickly. It features real-time reporting, predictive analytics, and customizable visualizations."
-            features={[
-              {
-                icon: CheckCircle2,
-                title: "Real-time Data Processing",
-                description:
-                  "Instant insights from continuously updated data streams.",
-              },
-              {
-                icon: Sparkles,
-                title: "Predictive Modeling",
-                description:
-                  "Forecast future trends and identify potential opportunities.",
-              },
-              {
-                icon: Award,
-                title: "Customizable Reporting",
-                description:
-                  "Tailor reports and dashboards to specific business needs.",
-              },
-            ]}
-            isReversed // This will flip the image to the right
-          />
-
-          <ProjectCard
-            imageSrc="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            imageAlt="Mobile Health Application"
-            title="Intuitive Mobile Health App"
-            tagline="Healthcare & Wellness"
-            description="Developed a user-friendly mobile application for health monitoring and wellness management. Features include personalized health plans, progress tracking, appointment scheduling, and secure data handling."
-            features={[
-              {
-                icon: CheckCircle2,
-                title: "Personalized Health Plans",
-                description:
-                  "Customized wellness journeys based on individual goals.",
-              },
-              {
-                icon: Sparkles,
-                title: "Secure Data Management",
-                description:
-                  "Ensuring privacy and compliance with health regulations.",
-              },
-              {
-                icon: Award,
-                title: "Seamless Appointment Booking",
-                description:
-                  "Integrates with calendars for easy scheduling and reminders.",
-              },
-            ]}
-          />
+            {/* Right (blurred) */}
+            <motion.div
+              key={`next-${nextIndex}`}
+              initial={{ opacity: 0, x: 150, scale: 0.8 }}
+              animate={{ opacity: 0.5, x: 220, scale: 0.85 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute"
+            >
+              <ProjectCard {...projectData[nextIndex]} blurred />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
-
-      {/* Animation Styles */}
-      <style jsx>{`
-        @keyframes blob-slow {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(60px, -80px) scale(1.1);
-          }
-          66% {
-            transform: translate(-40px, 40px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-        .animate-blob-slow {
-          animation: blob-slow 12s infinite ease-in-out;
-        }
-        .animation-delay-3000 {
-          animation-delay: 3s;
-        }
-      `}</style>
     </section>
   );
 };

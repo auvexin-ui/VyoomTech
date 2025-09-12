@@ -30,13 +30,13 @@ const About = () => {
   const stats = [
     {
       icon: Users,
-      value: "25+",
+      value: "5+",
       label: "Happy Clients",
       color: "text-blue-500",
     },
     {
       icon: Award,
-      value: "50+",
+      value: "10+",
       label: "Projects Completed",
       color: "text-green-500",
     },
@@ -48,7 +48,7 @@ const About = () => {
     },
     {
       icon: Target,
-      value: "10+",
+      value: "2+",
       label: "Countries Served",
       color: "text-orange-500",
     },
@@ -167,23 +167,6 @@ const About = () => {
               Our Journey
             </h3>
           </GradientTextHeading>
-
-          <div className="max-w-4xl mx-auto">
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              Founded with a vision to bridge the gap between innovative
-              technology and practical business solutions, Vyoom Tech has grown
-              from a small team of passionate developers to a trusted partner
-              for businesses worldwide.
-            </p>
-
-            <p className="text-lg text-gray-600 leading-relaxed">
-              We specialize in creating mobile applications, responsive
-              websites, and intelligent AI solutions that not only meet current
-              needs but anticipate future challenges. Our commitment to
-              excellence and customer satisfaction drives us to continuously
-              evolve and stay ahead of technological trends.
-            </p>
-          </div>
         </div>
       </div>
     </section>

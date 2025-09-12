@@ -99,7 +99,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-dark-section relative overflow-hidden"
+      className="py-12 bg-dark-section relative overflow-hidden"
       aria-labelledby="contact-heading"
     >
       {/* Background Effects */}

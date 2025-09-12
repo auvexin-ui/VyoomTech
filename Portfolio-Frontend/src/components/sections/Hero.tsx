@@ -11,15 +11,11 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[90vh] lg:min-h-[85vh] flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden py-8 md:py-16"
+      className="relative min-h-[90vh] lg:min-h-[100vh] flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden py-8 md:py-16"
       aria-labelledby="hero-heading"
     >
       {/* Background Logo with Low Opacity */}
-      <div
-        className="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-5 dark:opacity-0"
-        style={{ backgroundImage: `url(${logoImage})` }}
-        aria-hidden="true"
-      />
+    
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -29,7 +25,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative mt-11 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative mt-12 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-6xl mx-auto flex flex-col items-center w-full">
           {/* Tagline */}
           <div className="inline-flex mt-6 items-center justify-center w-full max-w-sm px-3 py-2 rounded-full mb-6 animate-fade-in border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm shadow-md">
@@ -42,7 +38,7 @@ const Hero = () => {
           {/* Main Heading */}
           <h1
             id="hero-heading"
-            className="w-full text-4xl md:text-5xl lg:text-6xl font-extrabold font-sora mb-4 leading-tight animate-fade-in bg-gradient-to-r from-blue-500 via-purple-500 to-gray-700 text-transparent bg-clip-text"
+            className="w-full text-6xl md:text-7xl lg:text-8xl font-extrabold font-sora mb-4 leading-tight animate-fade-in bg-gradient-to-r from-blue-500 via-purple-500 to-gray-700 text-transparent bg-clip-text"
           >
             Digital Innovation
           </h1>
@@ -85,7 +81,7 @@ const Hero = () => {
           {/* Stats Section with CountUp */}
           <div
             ref={ref}
-            className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 mt-6 animate-fade-in"
+            className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 mt-8 animate-fade-in"
             style={{ animationDelay: "0.8s" }}
           >
             {[

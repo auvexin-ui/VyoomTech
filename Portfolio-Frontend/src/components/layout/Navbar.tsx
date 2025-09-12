@@ -43,9 +43,10 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-6">
+          {/* Desktop Navigation and CTA Button */}
+          {/* This is the key change: wrap navigation and CTA in a single flex container */}
+          <div className="hidden md:flex items-center space-x-6"> 
+            <div className="flex items-baseline space-x-6">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -56,10 +57,6 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
-          </div>
-
-          {/* CTA Button */}
-          <div className="hidden md:block">
             <Button variant="hero" size="sm" className="shadow-md hover:shadow-lg transition-shadow duration-200">
               Get Started
             </Button>
